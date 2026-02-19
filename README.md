@@ -74,8 +74,15 @@ bash install_misc_components.sh
 ```
 
 ## Step 7
-The theme should now be fully installed, now you must enable its components.
-* asdf (watch video to add these)
+### The theme should now be fully installed, now you must enable its components.
+
+System Settings → Appearance & Style → Colors & Themes:
+* Global Theme: Windows 7 Style
+* System Sounds: Windows 7
+* Cursors: Windows 7
+* Login Screen (SDDM): Windows 7
+* Plasma Style: Windows 7
+* Splash Screen: Windows 7
   
 ---
 
