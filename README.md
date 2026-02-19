@@ -21,10 +21,7 @@ Warning: This modifies internal Plasma components.
 
 Install all required build tools and runtime dependencies:
 ```bash
-sudo pacman -S git cmake extra-cmake-modules ninja curl unzip \
-qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland \
-plasma-wayland-protocols plasma5support kvantum \
-sddm sddm-kcm base-devel
+sudo pacman -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland plasma-wayland-protocols plasma5support kvantum sddm sddm-kcm base-devel
 ```
 
 ---
