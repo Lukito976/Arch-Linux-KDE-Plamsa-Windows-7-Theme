@@ -64,7 +64,7 @@ bash install_kwin_components.sh
 bash install_plasma_components.sh
 bash install_misc_components.sh
 ```
-* when prompted, enter sudo password and install all fonts and custom branding, do not install plymouth thme (vista)
+When prompted, enter sudo password and install all fonts and custom branding, do not install plymouth thme (vista)
 
 ---
 
@@ -73,7 +73,7 @@ bash install_misc_components.sh
 cd /path/to/aerothemeplasma
 git pull
 ```
-* Re-run:
+Re-run:
 ```bash
 bash compile.sh --wayland
 bash install_plasmoids.sh
@@ -85,13 +85,15 @@ bash install_misc_components.sh
 ---
 
 # Step 7
-* The theme should now be fully installed, now go into system settings and Wallapper and Themes
-
+The theme should now be fully installed, now you must enable it.
+* asdf (watch video to add these)
+  
 ---
 
 # Final Step: Freeze Plasma Updates 
 * AeroThemePlasma depends on internal Plasma APIs.
 * Future updates may break the theme stack.
+* In order to prevent this, we must freeze updates.
 
 --
 
@@ -113,8 +115,6 @@ You should see warnings such as:
 warning: plasma-desktop: ignoring package upgrade
 ```
 If you see this, Plasma is now frozen.
-
----
 
 # Bypassing the Freeze (When You Intentionally Want to Update)
 To temporarily update everything, including Plasma:
