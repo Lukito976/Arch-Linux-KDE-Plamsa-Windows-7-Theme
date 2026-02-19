@@ -1,54 +1,53 @@
 # Arch Linux: Windows 7 Theme for KDE Plamsa Desktop Environment
 
 This repository documents how to deploy a Windows 7–style desktop on KDE Plasma 6 (Wayland) using:
-* **[AeroThemePlasma](https://gitgud.io/wackyideas/aerothemeplasma.git)**￼for the full Windows 7 visual stack
-* **[SevenTasks / SevenStart] for taskbar & start menu behavior
-* **[kysguard6-git (AUR)] for Plasma 6 system monitoring compatibility
-* **Custom KWin, Plasma, and theme components
+* **[AeroThemePlasma](https://gitgud.io/wackyideas/aerothemeplasma.git)** for the full Windows 7 visual stack
+* **SevenTasks / SevenStart** for taskbar & start menu behavior
+* **kysguard6-git (AUR)** for Plasma 6 system monitoring compatibility
+* Custom **KWin**, **Plasma**, and **theme components**
 
-⚠️ This modifies internal Plasma components.
-Recommended for advanced Arch Linux users.
+Warning: This modifies internal Plasma components.
 
-⸻
+---
 
-Prerequisites
-	•	Arch Linux
-	•	KDE Plasma 6 (Wayland session)
-	•	SDDM installed and working
-	•	Internet connection
-	•	Basic familiarity with pacman and AUR builds
+## Prerequisites
+* Arch Linux (tested on archinstall installation)
+* KDE Plasma 6 (Wayland session)
+* SDDM installed and working
 
-⸻
+---
 
-Step 1 — Install Required Dependencies
+## Step 1 — Install Required Dependencies
 
 Install all required build tools and runtime dependencies:
-
+```bash
 sudo pacman -S git cmake extra-cmake-modules ninja curl unzip \
 qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland \
 plasma-wayland-protocols plasma5support kvantum \
 sddm sddm-kcm base-devel
+```
 
-
-⸻
+---
 
 Step 2 — Install yay (AUR Helper)
 
 If yay is not installed:
-
+```bash
 git clone https://aur.archlinux.org/yay.git
+```
+```bash
 cd yay
 makepkg -si
+```
 
-
-⸻
+---
 
 Step 3 — Install Plasma 6 KSysGuard Fork
 
 Plasma 6 removed legacy KSysGuard components. This fork restores compatibility.
-
+```bash
 yay -S kysguard6-git
-
+```
 
 ⸻
 
