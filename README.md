@@ -26,7 +26,7 @@ sudo pacman -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboar
 
 ---
 
-Step 2 — Install yay (AUR Helper)
+## Step 2 — Install yay (AUR Helper)
 
 If yay is not installed:
 ```bash
@@ -39,162 +39,86 @@ makepkg -si
 
 ---
 
-Step 3 — Install Plasma 6 KSysGuard Fork
+## Step 3 — Install Plasma 6 KSysGuard Fork
 
 Plasma 6 removed legacy KSysGuard components. This fork restores compatibility.
 ```bash
 yay -S kysguard6-git
 ```
 
-⸻
+---
 
-Step 4 — Clone AeroThemePlasma
-
+## Step 4 — Clone AeroThemePlasma
+```bash
 git clone https://gitgud.io/wackyideas/aerothemeplasma.git
 cd aerothemeplasma
+```
 
+---
 
-⸻
-
-Step 5 — Compile Theme (Wayland)
-
+## Step 5 — Compile Theme (Wayland)
+```bash 
 bash compile.sh --wayland --ninja
-
-
-⸻
-
-Step 6 — Install Theme Components
-
-Run all install scripts:
-
 bash install_plasmoids.sh --ninja
 bash install_kwin_components.sh
 bash install_plasma_components.sh
 bash install_misc_components.sh
+```
+* when prompted, enter sudo password and install all fonts and custom branding, do not install plymouth thme (vista)
 
+---
 
-⸻
-
-Step 7 — Install Fonts & Branding
-
-Install:
-	•	All included Windows-style fonts
-	•	Custom branding assets
-
-⚠️ Do not install the Vista Plymouth theme unless explicitly desired.
-
-⸻
-
-Required Compatibility Patch (Plasma 6.5.x)
-
-If SevenTasks fails with:
-
-Cannot assign to non-existent property "windowTitle"
-
-Apply this fix:
-
-sed -i 's/windowTitle/title/g' \
-~/.local/share/plasma/plasmoids/io.gitgud.wackyideas.seventasks/contents/ui/Task.qml
-
-Restart Plasma:
-
-kquitapp6 plasmashell
-plasmashell --replace &
-
-This resolves the Plasma 6 Task API change.
-
-⸻
-
-Updating AeroThemePlasma
-
-To update the theme:
-
+## Step 6 — Update Theme
+```bash
 cd /path/to/aerothemeplasma
 git pull
-
-Re-run:
-
+```
+* Re-run:
+```bash
 bash compile.sh --wayland
 bash install_plasmoids.sh
+install_kwin_components.sh
 bash install_plasma_components.sh
 bash install_misc_components.sh
+```
 
-install_kwin_components.sh usually does not need to be re-run unless KWin changes.
+---
 
-⸻
+# Step 7
+* The theme should now be fully installed, now go into system settings and Wallapper and Themes
 
-Freeze Plasma Updates (Strongly Recommended)
+---
 
-AeroThemePlasma depends on internal Plasma APIs.
-Future updates may break the theme stack.
+# Final Step: Freeze Plasma Updates 
+* AeroThemePlasma depends on internal Plasma APIs.
+* Future updates may break the theme stack.
 
-⸻
+--
 
-Step 1 — Edit pacman Configuration
-
+# Step 1 — Edit pacman Configuration
+```bash
 sudo nano /etc/pacman.conf
-
+```
 Under [options], add:
-
+```bash
 IgnorePkg = plasma-desktop plasma-workspace libplasma kwin plasma5support systemsettings kde-cli-tools kdeplasma-addons breeze breeze-gtk plasma-integration plasma-nm plasma-pa plasma-systemmonitor plasma-browser-integration xdg-desktop-portal-kde sddm-kcm kdecoration aurorae layer-shell-qt libkscreen kscreenlocker kwayland kysguard6-git
+```
 
-
-⸻
-
-Step 2 — Verify Freeze
-
+# Step 2 — Verify Freeze
+```bash
 sudo pacman -Syu
-
+```
 You should see warnings such as:
-
+```
 warning: plasma-desktop: ignoring package upgrade
+```
+If you see this, Plasma is now frozen.
 
-Plasma is now frozen.
+---
 
-⸻
-
-Bypassing the Freeze (When You Intentionally Want to Update)
-
+# Bypassing the Freeze (When You Intentionally Want to Update)
 To temporarily update everything, including Plasma:
-
+```bash
 sudo pacman -Syu --ignore ""
-
-After updating, you may need to reapply the SevenTasks compatibility patch.
-
-⸻
-
-Recovery
-
-If Plasma fails to load:
-	1.	Switch to TTY (Ctrl + Alt + F3)
-	2.	Remove custom plasmoids:
-
-rm -rf ~/.local/share/plasma/plasmoids/io.gitgud.wackyideas*
-
-
-	3.	Reset panel layout:
-
-mv ~/.config/plasma-org.kde.plasma.desktop-appletsrc \
-   ~/.config/plasma-org.kde.plasma.desktop-appletsrc.bak
-
-
-
-Log back in.
-
-⸻
-
-Final Result
-
-You now have:
-	•	Windows 7–style Plasma 6 (Wayland)
-	•	SevenTasks compatibility with Plasma 6.5.x
-	•	KSysGuard restored
-	•	Frozen update protection
-	•	Reproducible installation workflow
-
-⸻
-
-If you’d like, I can also generate:
-	•	A full uninstall guide
-	•	A system snapshot / rollback guide
-	•	Or a fully automated install script version
+```
+This will temporarily override your IgnorePkg entries in /etc/pacman.conf.
