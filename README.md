@@ -84,20 +84,20 @@ bash install_misc_components.sh
 
 ---
 
-# Step 7
+## Step 7
 The theme should now be fully installed, now you must enable it.
 * asdf (watch video to add these)
   
 ---
 
-# Final Step: Freeze Plasma Updates 
+## Final Step: Freeze Plasma Updates 
 * AeroThemePlasma depends on internal Plasma APIs.
 * Future updates may break the theme stack.
 * In order to prevent this, we must freeze updates.
 
 --
 
-# Step 1 — Edit pacman Configuration
+## Step 1 — Edit pacman Configuration
 ```bash
 sudo nano /etc/pacman.conf
 ```
@@ -106,7 +106,7 @@ Under [options], add:
 IgnorePkg = plasma-desktop plasma-workspace libplasma kwin plasma5support systemsettings kde-cli-tools kdeplasma-addons breeze breeze-gtk plasma-integration plasma-nm plasma-pa plasma-systemmonitor plasma-browser-integration xdg-desktop-portal-kde sddm-kcm kdecoration aurorae layer-shell-qt libkscreen kscreenlocker kwayland kysguard6-git
 ```
 
-# Step 2 — Verify Freeze
+## Step 2 — Verify Freeze
 ```bash
 sudo pacman -Syu
 ```
@@ -116,7 +116,7 @@ warning: plasma-desktop: ignoring package upgrade
 ```
 If you see this, Plasma is now frozen.
 
-# Bypassing the Freeze (When You Intentionally Want to Update)
+## Bypassing the Freeze (When You Intentionally Want to Update)
 To temporarily update everything, including Plasma:
 ```bash
 sudo pacman -Syu --ignore ""
