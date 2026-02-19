@@ -24,8 +24,6 @@ Install all required build tools and runtime dependencies:
 sudo pacman -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland plasma-wayland-protocols plasma5support kvantum sddm sddm-kcm base-devel
 ```
 
----
-
 ## Step 2 — Install yay (AUR Helper)
 
 If yay is not installed:
@@ -37,8 +35,6 @@ cd yay
 makepkg -si
 ```
 
----
-
 ## Step 3 — Install Plasma 6 KSysGuard Fork
 
 Plasma 6 removed legacy KSysGuard components. This fork restores compatibility.
@@ -46,15 +42,11 @@ Plasma 6 removed legacy KSysGuard components. This fork restores compatibility.
 yay -S kysguard6-git
 ```
 
----
-
 ## Step 4 — Clone AeroThemePlasma
 ```bash
 git clone https://gitgud.io/wackyideas/aerothemeplasma.git
 cd aerothemeplasma
 ```
-
----
 
 ## Step 5 — Compile Theme (Wayland)
 ```bash 
@@ -64,9 +56,7 @@ bash install_kwin_components.sh
 bash install_plasma_components.sh
 bash install_misc_components.sh
 ```
-When prompted, enter sudo password and install all fonts and custom branding, do not install plymouth thme (vista)
-
----
+When prompted, enter sudo password and install all fonts and custom branding, do not install plymouth thme (vista).
 
 ## Step 6 — Update Theme
 ```bash
@@ -81,8 +71,6 @@ install_kwin_components.sh
 bash install_plasma_components.sh
 bash install_misc_components.sh
 ```
-
----
 
 ## Step 7
 The theme should now be fully installed, now you must enable it.
