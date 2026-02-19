@@ -73,7 +73,7 @@ bash install_misc_components.sh
 ```
 
 ## Step 7
-The theme should now be fully installed, now you must enable it.
+The theme should now be fully installed, now you must enable its components.
 * asdf (watch video to add these)
   
 ---
