@@ -12,6 +12,7 @@ Warning: This modifies internal Plasma components.
 
 ## Prerequisites
 * Arch Linux (tested on archinstall installation)
+→ *I use arch btw*
 * KDE Plasma 6 (Wayland session)
 * SDDM installed and working
 
