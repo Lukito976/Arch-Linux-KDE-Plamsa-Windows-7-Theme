@@ -40,7 +40,7 @@ makepkg -si
 
 Plasma 6 removed legacy KSysGuard components. This fork restores compatibility.
 ```bash
-yay -S kysguard6-git
+yay -S ksysguard6-git
 ```
 
 ## Step 4 — Clone AeroThemePlasma
