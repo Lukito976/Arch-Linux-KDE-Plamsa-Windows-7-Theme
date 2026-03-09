@@ -1,18 +1,18 @@
-# Arch Linux: Windows 7 Theme for KDE Plamsa Desktop Environment
+# Arch Linux: Windows 7 Theme for KDE Plasma Desktop Environment
 
 This repository documents how to deploy a Windows 7–style desktop on KDE Plasma 6 (Wayland) using:
-* **[AeroThemePlasma](https://gitgud.io/wackyideas/aerothemeplasma.git)** for the full Windows 7 visual stack
+* **[AeroThemePlasma](https://gitgud.io/aeroshell/atp/aerothemeplasma)** for the full Windows 7 visual stack
 * **SevenTasks / SevenStart** for taskbar & start menu behavior
-* **kysguard6-git (AUR)** for Plasma 6 system monitoring compatibility
+* **ksysguard6-git (AUR)** for Plasma 6 system monitoring compatibility
 * Custom **KWin**, **Plasma**, and **theme components**
 
-Warning: This modifies internal Plasma components.
+> Warning: This modifies internal Plasma components.
 
 ---
 
 ## Prerequisites
 * Arch Linux (tested on archinstall installation)
-→ *I use arch btw*
+  → *I use arch btw*
 * KDE Plasma 6 (Wayland session)
 * SDDM installed and working
 
@@ -22,7 +22,7 @@ Warning: This modifies internal Plasma components.
 
 Install all required build tools and runtime dependencies:
 ```bash
-sudo pacman -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland plasma-wayland-protocols plasma5support kvantum sddm sddm-kcm base-devel
+sudo pacman -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland plasma-wayland-protocols plasma5support kvantum sddm sddm-kcm base-devel plasma-nm plasma-pa plasma-workspace plasma-desktop kwin-x11 plasma-x11-session
 ```
 
 ## Step 2 — Install yay (AUR Helper)
@@ -44,77 +44,46 @@ yay -S ksysguard6-git
 ```
 
 ## Step 4 — Clone AeroThemePlasma
+
 ```bash
-git clone https://gitgud.io/wackyideas/aerothemeplasma.git
+git clone https://gitgud.io/wackyideas/aerothemeplasma.git aerothemeplasma
 cd aerothemeplasma
 ```
 
-## Step 5 — Compile Theme (Wayland)
-```bash 
-bash compile.sh --wayland --ninja
-bash install_plasmoids.sh --ninja
-bash install_kwin_components.sh
-bash install_plasma_components.sh
-bash install_misc_components.sh
-```
-When prompted, enter sudo password and install all fonts and custom branding, do not install plymouth thme (vista).
+## Step 5 — Install from Source
 
-## Step 6 — Update Theme
+Run the install script. Use `--ninja` to reduce build times, and `--skip-x11` to skip building X11 components if not needed:
+
 ```bash
-cd /path/to/aerothemeplasma
-git pull
-```
-Re-run:
-```bash
-bash compile.sh --wayland
-bash install_plasmoids.sh
-install_kwin_components.sh
-bash install_plasma_components.sh
-bash install_misc_components.sh
+bash install.sh --ninja
 ```
 
-## Step 7
-### The theme should now be fully installed, now you must enable its components.
+> Do **NOT** run the install script with `sudo`, `doas`, or as root. The script will ask for admin privileges itself when needed.
 
-System Settings → Appearance & Style → Colors & Themes:
+It's highly recommended to keep the generated build files after installation — uninstalling AeroThemePlasma can be done using `sudo make uninstall` or `sudo ninja uninstall` in each build directory.
+
+## Step 6 — Enable Theme Components
+
+The theme should now be fully installed. Enable its components via:
+
+**System Settings → Appearance & Style → Colors & Themes:**
 * Global Theme: Windows 7 Style
 * System Sounds: Windows 7
 * Cursors: Windows 7
 * Login Screen (SDDM): Windows 7
 * Plasma Style: Windows 7
 * Splash Screen: Windows 7
-  
+
 ---
 
-## Final Step: Freeze Plasma Updates 
-* AeroThemePlasma depends on internal Plasma APIs.
-* Future updates may break the theme stack.
-* In order to prevent this, we must freeze updates.
+## Updating AeroThemePlasma
 
---
+Pull the latest changes and re-run the install script — it will automatically pull changes for all cloned repositories and rebuild them:
 
-## Step 1 — Edit pacman Configuration
 ```bash
-sudo nano /etc/pacman.conf
-```
-Under [options], add:
-```bash
-IgnorePkg = plasma-desktop plasma-workspace libplasma kwin plasma5support systemsettings kde-cli-tools kdeplasma-addons breeze breeze-gtk plasma-integration plasma-nm plasma-pa plasma-systemmonitor plasma-browser-integration xdg-desktop-portal-kde sddm-kcm kdecoration aurorae layer-shell-qt libkscreen kscreenlocker kwayland kysguard6-git
+cd /path/to/aerothemeplasma
+git pull
+bash install.sh --ninja
 ```
 
-## Step 2 — Verify Freeze
-```bash
-sudo pacman -Syu
-```
-You should see warnings such as:
-```
-warning: plasma-desktop: ignoring package upgrade
-```
-If you see this, Plasma is now frozen.
-
-## Bypassing the Freeze (When You Intentionally Want to Update)
-To temporarily update everything, including Plasma:
-```bash
-sudo pacman -Syu --ignore ""
-```
-This will temporarily override your IgnorePkg entries in /etc/pacman.conf.
+If something needs to be rebuilt completely, delete the repository folder causing the build error and re-run the install script. Note that after a full system upgrade, KWin effects and `libplasma` modifications may stop working — re-running the install script is required to restore them.
